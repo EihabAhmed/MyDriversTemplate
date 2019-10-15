@@ -1,0 +1,393 @@
+
+MyDriversTemplate.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000224  00000000  00000000  00000054  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000000  00800060  00800060  00000278  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .comment      00000030  00000000  00000000  00000278  2**0
+                  CONTENTS, READONLY
+  3 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000002a8  2**2
+                  CONTENTS, READONLY
+  4 .debug_aranges 000000d8  00000000  00000000  000002e4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   00000b77  00000000  00000000  000003bc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 000007b3  00000000  00000000  00000f33  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   000006c5  00000000  00000000  000016e6  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  00000244  00000000  00000000  00001dac  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    000004ef  00000000  00000000  00001ff0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    000005c2  00000000  00000000  000024df  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 000000c0  00000000  00000000  00002aa1  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 49 00 	jmp	0x92	; 0x92 <__vector_1>
+   8:	0c 94 6d 00 	jmp	0xda	; 0xda <__vector_2>
+   c:	0c 94 91 00 	jmp	0x122	; 0x122 <__vector_3>
+  10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	e4 e2       	ldi	r30, 0x24	; 36
+  68:	f2 e0       	ldi	r31, 0x02	; 2
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	a0 36       	cpi	r26, 0x60	; 96
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+
+00000076 <__do_clear_bss>:
+  76:	20 e0       	ldi	r18, 0x00	; 0
+  78:	a0 e6       	ldi	r26, 0x60	; 96
+  7a:	b0 e0       	ldi	r27, 0x00	; 0
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	a0 36       	cpi	r26, 0x60	; 96
+  82:	b2 07       	cpc	r27, r18
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 ec 00 	call	0x1d8	; 0x1d8 <main>
+  8a:	0c 94 10 01 	jmp	0x220	; 0x220 <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <__vector_1>:
+	
+	sei();
+}
+
+ISR(INT0_vect)
+{
+  92:	1f 92       	push	r1
+  94:	0f 92       	push	r0
+  96:	0f b6       	in	r0, 0x3f	; 63
+  98:	0f 92       	push	r0
+  9a:	11 24       	eor	r1, r1
+  9c:	2f 93       	push	r18
+  9e:	3f 93       	push	r19
+  a0:	4f 93       	push	r20
+  a2:	5f 93       	push	r21
+  a4:	6f 93       	push	r22
+  a6:	7f 93       	push	r23
+  a8:	8f 93       	push	r24
+  aa:	9f 93       	push	r25
+  ac:	af 93       	push	r26
+  ae:	bf 93       	push	r27
+  b0:	ef 93       	push	r30
+  b2:	ff 93       	push	r31
+	Interrupt0_handler();
+  b4:	0e 94 ce 00 	call	0x19c	; 0x19c <Interrupt0_handler>
+}
+  b8:	ff 91       	pop	r31
+  ba:	ef 91       	pop	r30
+  bc:	bf 91       	pop	r27
+  be:	af 91       	pop	r26
+  c0:	9f 91       	pop	r25
+  c2:	8f 91       	pop	r24
+  c4:	7f 91       	pop	r23
+  c6:	6f 91       	pop	r22
+  c8:	5f 91       	pop	r21
+  ca:	4f 91       	pop	r20
+  cc:	3f 91       	pop	r19
+  ce:	2f 91       	pop	r18
+  d0:	0f 90       	pop	r0
+  d2:	0f be       	out	0x3f, r0	; 63
+  d4:	0f 90       	pop	r0
+  d6:	1f 90       	pop	r1
+  d8:	18 95       	reti
+
+000000da <__vector_2>:
+
+ISR(INT1_vect)
+{
+  da:	1f 92       	push	r1
+  dc:	0f 92       	push	r0
+  de:	0f b6       	in	r0, 0x3f	; 63
+  e0:	0f 92       	push	r0
+  e2:	11 24       	eor	r1, r1
+  e4:	2f 93       	push	r18
+  e6:	3f 93       	push	r19
+  e8:	4f 93       	push	r20
+  ea:	5f 93       	push	r21
+  ec:	6f 93       	push	r22
+  ee:	7f 93       	push	r23
+  f0:	8f 93       	push	r24
+  f2:	9f 93       	push	r25
+  f4:	af 93       	push	r26
+  f6:	bf 93       	push	r27
+  f8:	ef 93       	push	r30
+  fa:	ff 93       	push	r31
+	Interrupt1_handler();
+  fc:	0e 94 d8 00 	call	0x1b0	; 0x1b0 <Interrupt1_handler>
+}
+ 100:	ff 91       	pop	r31
+ 102:	ef 91       	pop	r30
+ 104:	bf 91       	pop	r27
+ 106:	af 91       	pop	r26
+ 108:	9f 91       	pop	r25
+ 10a:	8f 91       	pop	r24
+ 10c:	7f 91       	pop	r23
+ 10e:	6f 91       	pop	r22
+ 110:	5f 91       	pop	r21
+ 112:	4f 91       	pop	r20
+ 114:	3f 91       	pop	r19
+ 116:	2f 91       	pop	r18
+ 118:	0f 90       	pop	r0
+ 11a:	0f be       	out	0x3f, r0	; 63
+ 11c:	0f 90       	pop	r0
+ 11e:	1f 90       	pop	r1
+ 120:	18 95       	reti
+
+00000122 <__vector_3>:
+
+ISR(INT2_vect)
+{
+ 122:	1f 92       	push	r1
+ 124:	0f 92       	push	r0
+ 126:	0f b6       	in	r0, 0x3f	; 63
+ 128:	0f 92       	push	r0
+ 12a:	11 24       	eor	r1, r1
+ 12c:	2f 93       	push	r18
+ 12e:	3f 93       	push	r19
+ 130:	4f 93       	push	r20
+ 132:	5f 93       	push	r21
+ 134:	6f 93       	push	r22
+ 136:	7f 93       	push	r23
+ 138:	8f 93       	push	r24
+ 13a:	9f 93       	push	r25
+ 13c:	af 93       	push	r26
+ 13e:	bf 93       	push	r27
+ 140:	ef 93       	push	r30
+ 142:	ff 93       	push	r31
+	Interrupt2_handler();
+ 144:	0e 94 e2 00 	call	0x1c4	; 0x1c4 <Interrupt2_handler>
+ 148:	ff 91       	pop	r31
+ 14a:	ef 91       	pop	r30
+ 14c:	bf 91       	pop	r27
+ 14e:	af 91       	pop	r26
+ 150:	9f 91       	pop	r25
+ 152:	8f 91       	pop	r24
+ 154:	7f 91       	pop	r23
+ 156:	6f 91       	pop	r22
+ 158:	5f 91       	pop	r21
+ 15a:	4f 91       	pop	r20
+ 15c:	3f 91       	pop	r19
+ 15e:	2f 91       	pop	r18
+ 160:	0f 90       	pop	r0
+ 162:	0f be       	out	0x3f, r0	; 63
+ 164:	0f 90       	pop	r0
+ 166:	1f 90       	pop	r1
+ 168:	18 95       	reti
+
+0000016a <leds_out>:
+			break;
+		case led_2:
+			PIN_WRITE(LED_VAL, LED_2_PIN, val);
+			break;
+		case led_3:
+			PIN_WRITE(LED_VAL, LED_3_PIN, val);
+ 16a:	a0 9a       	sbi	0x14, 0	; 20
+ 16c:	a1 9a       	sbi	0x14, 1	; 20
+ 16e:	a2 9a       	sbi	0x14, 2	; 20
+ 170:	08 95       	ret
+
+00000172 <led_toggle>:
+	}
+}
+
+void led_toggle(led_number led_select)
+{
+	switch (led_select)
+ 172:	81 30       	cpi	r24, 0x01	; 1
+ 174:	49 f0       	breq	.+18     	; 0x188 <led_toggle+0x16>
+ 176:	18 f0       	brcs	.+6      	; 0x17e <led_toggle+0xc>
+ 178:	82 30       	cpi	r24, 0x02	; 2
+ 17a:	59 f0       	breq	.+22     	; 0x192 <led_toggle+0x20>
+ 17c:	08 95       	ret
+	{
+		case led_1:
+			TOG_PIN(LED_VAL, LED_1_PIN);
+ 17e:	95 b3       	in	r25, 0x15	; 21
+ 180:	81 e0       	ldi	r24, 0x01	; 1
+ 182:	89 27       	eor	r24, r25
+ 184:	85 bb       	out	0x15, r24	; 21
+			break;
+ 186:	08 95       	ret
+		case led_2:
+			TOG_PIN(LED_VAL, LED_2_PIN);
+ 188:	95 b3       	in	r25, 0x15	; 21
+ 18a:	82 e0       	ldi	r24, 0x02	; 2
+ 18c:	89 27       	eor	r24, r25
+ 18e:	85 bb       	out	0x15, r24	; 21
+			break;
+ 190:	08 95       	ret
+		case led_3:
+			TOG_PIN(LED_VAL, LED_3_PIN);
+ 192:	95 b3       	in	r25, 0x15	; 21
+ 194:	84 e0       	ldi	r24, 0x04	; 4
+ 196:	89 27       	eor	r24, r25
+ 198:	85 bb       	out	0x15, r24	; 21
+ 19a:	08 95       	ret
+
+0000019c <Interrupt0_handler>:
+//#define ADC_TEST
+//#define INTERRUPT_TEST
+
+void Interrupt0_handler()
+{
+	led_toggle(led_1);
+ 19c:	80 e0       	ldi	r24, 0x00	; 0
+ 19e:	0e 94 b9 00 	call	0x172	; 0x172 <led_toggle>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 1a2:	83 ed       	ldi	r24, 0xD3	; 211
+ 1a4:	90 e3       	ldi	r25, 0x30	; 48
+ 1a6:	01 97       	sbiw	r24, 0x01	; 1
+ 1a8:	f1 f7       	brne	.-4      	; 0x1a6 <Interrupt0_handler+0xa>
+ 1aa:	00 c0       	rjmp	.+0      	; 0x1ac <Interrupt0_handler+0x10>
+ 1ac:	00 00       	nop
+ 1ae:	08 95       	ret
+
+000001b0 <Interrupt1_handler>:
+	_delay_ms(50);
+}
+
+void Interrupt1_handler()
+{
+	led_toggle(led_2);
+ 1b0:	81 e0       	ldi	r24, 0x01	; 1
+ 1b2:	0e 94 b9 00 	call	0x172	; 0x172 <led_toggle>
+ 1b6:	83 ed       	ldi	r24, 0xD3	; 211
+ 1b8:	90 e3       	ldi	r25, 0x30	; 48
+ 1ba:	01 97       	sbiw	r24, 0x01	; 1
+ 1bc:	f1 f7       	brne	.-4      	; 0x1ba <Interrupt1_handler+0xa>
+ 1be:	00 c0       	rjmp	.+0      	; 0x1c0 <Interrupt1_handler+0x10>
+ 1c0:	00 00       	nop
+ 1c2:	08 95       	ret
+
+000001c4 <Interrupt2_handler>:
+	_delay_ms(50);
+}
+
+void Interrupt2_handler()
+{
+	led_toggle(led_3);
+ 1c4:	82 e0       	ldi	r24, 0x02	; 2
+ 1c6:	0e 94 b9 00 	call	0x172	; 0x172 <led_toggle>
+ 1ca:	83 ed       	ldi	r24, 0xD3	; 211
+ 1cc:	90 e3       	ldi	r25, 0x30	; 48
+ 1ce:	01 97       	sbiw	r24, 0x01	; 1
+ 1d0:	f1 f7       	brne	.-4      	; 0x1ce <Interrupt2_handler+0xa>
+ 1d2:	00 c0       	rjmp	.+0      	; 0x1d4 <Interrupt2_handler+0x10>
+ 1d4:	00 00       	nop
+ 1d6:	08 95       	ret
+
+000001d8 <main>:
+	#endif
+	/**************************** RGB LED *********************************/
+	
+    /****************************** LED ***********************************/
+	#if defined(LED_TEST)
+		leds_out();
+ 1d8:	0e 94 b5 00 	call	0x16a	; 0x16a <leds_out>
+	
+		int index = 0;
+		led_toggle(index);
+ 1dc:	80 e0       	ldi	r24, 0x00	; 0
+ 1de:	0e 94 b9 00 	call	0x172	; 0x172 <led_toggle>
+ 1e2:	8f e4       	ldi	r24, 0x4F	; 79
+ 1e4:	93 ec       	ldi	r25, 0xC3	; 195
+ 1e6:	01 97       	sbiw	r24, 0x01	; 1
+ 1e8:	f1 f7       	brne	.-4      	; 0x1e6 <main+0xe>
+ 1ea:	00 c0       	rjmp	.+0      	; 0x1ec <main+0x14>
+ 1ec:	00 00       	nop
+		while(1)
+		{
+			_delay_ms(200);
+			led_toggle(index);
+ 1ee:	80 e0       	ldi	r24, 0x00	; 0
+ 1f0:	0e 94 b9 00 	call	0x172	; 0x172 <led_toggle>
+			index++;
+ 1f4:	c1 e0       	ldi	r28, 0x01	; 1
+ 1f6:	d0 e0       	ldi	r29, 0x00	; 0
+ 1f8:	02 c0       	rjmp	.+4      	; 0x1fe <main+0x26>
+			if (index == LEDS_COUNT)
+			index = 0;
+ 1fa:	c0 e0       	ldi	r28, 0x00	; 0
+ 1fc:	d0 e0       	ldi	r29, 0x00	; 0
+			led_toggle(index);
+ 1fe:	8c 2f       	mov	r24, r28
+ 200:	0e 94 b9 00 	call	0x172	; 0x172 <led_toggle>
+ 204:	8f e4       	ldi	r24, 0x4F	; 79
+ 206:	93 ec       	ldi	r25, 0xC3	; 195
+ 208:	01 97       	sbiw	r24, 0x01	; 1
+ 20a:	f1 f7       	brne	.-4      	; 0x208 <main+0x30>
+ 20c:	00 c0       	rjmp	.+0      	; 0x20e <main+0x36>
+ 20e:	00 00       	nop
+		int index = 0;
+		led_toggle(index);
+		while(1)
+		{
+			_delay_ms(200);
+			led_toggle(index);
+ 210:	8c 2f       	mov	r24, r28
+ 212:	0e 94 b9 00 	call	0x172	; 0x172 <led_toggle>
+			index++;
+ 216:	21 96       	adiw	r28, 0x01	; 1
+			if (index == LEDS_COUNT)
+ 218:	c3 30       	cpi	r28, 0x03	; 3
+ 21a:	d1 05       	cpc	r29, r1
+ 21c:	81 f7       	brne	.-32     	; 0x1fe <main+0x26>
+ 21e:	ed cf       	rjmp	.-38     	; 0x1fa <main+0x22>
+
+00000220 <_exit>:
+ 220:	f8 94       	cli
+
+00000222 <__stop_program>:
+ 222:	ff cf       	rjmp	.-2      	; 0x222 <__stop_program>
